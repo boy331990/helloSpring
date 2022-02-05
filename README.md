@@ -6,6 +6,7 @@ study spring from inflearn
    2. https://start.spring.io를 이용 기본 프로젝트 생성
    3. IntelliJ Gradle 대신 자바 직접 실행으로 변경
       1. Preferences -> Gradle 검색 -> Build and run using, Run tests using: Gradle -> IntelliJ IDEA로 변경
+
 2. 라이브러리 살펴보기
    1. 스프링 부트 라이브러리
       1. spring-boot-starter-web
@@ -23,6 +24,7 @@ study spring from inflearn
          2. mockito: 목 라이브러리
          3. assertj: 테스트 코드를 좀 더 편하게 작성하게 도와주는 라이브러리
          4. spring-test: 스프링 통합 테스트 지원
+
 3. View 환경설정
    1. Welcome Page 만들기
       1. resources/static/index.html 생성
@@ -41,3 +43,9 @@ study spring from inflearn
       1. 스프링 부트 템플릿엔진 기본 viewName 매핑
       2. resources:templates/ + {ViewName} + .html
 * spring-boot-devtools 라이브러리를 추가하면, html 파일을 컴파일만 해주면 서버 재시작 없이 View 파일 변경이 가능하다.
+
+4. 빌드하고 실행하기(콘솔로 이동)
+   1. 생성된 프로젝트 디렉토리로 이동 후 ./gradlew build
+   2. cd build/libs
+   3. java -jar hello-spring-0.0.1-SNAPSHOT.jar
+   4. localhost:8080 접속하여 확인
