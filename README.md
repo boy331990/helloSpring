@@ -1,6 +1,7 @@
 # helloSpring
 study spring from inflearn
 
+========== 프로젝트 환경설정 Start ==========
 1. 프로젝트 생성
    1. IntelliJ 설치
    2. https://start.spring.io를 이용 기본 프로젝트 생성
@@ -49,3 +50,28 @@ study spring from inflearn
    2. cd build/libs
    3. java -jar hello-spring-0.0.1-SNAPSHOT.jar
    4. localhost:8080 접속하여 확인
+========== 프로젝트 환경설정 End ==========
+
+========== 스프링 웹 개발 기초 Start ==========
+1. 정적 컨텐츠
+   1. resources/static 하위에 위치하는 html을 찾아 표시한다.
+
+2. MVC와 템플릿 엔진
+   1. MVC : Model, View, Controller
+      1. 내장 톰켓 서버 
+      2. Controller 
+      3. viewResolver (Spring Boot 기본 내장, resources/templates에 위치)
+      4. Thymeleaf 템플릿 엔진 처리
+
+3. API
+   1. @ResponseBody 어노테이션을 붙인다.
+      1. 해당 어노테이션은 return시 viewResolver가 아닌 HttpMessageConverter가 동작한다.
+         1. 기본 문자처리 : StringHttpMessageConverter
+         2. 기본 객체처리 : MappingJackson2HttpMessageConverter
+         3. byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있음.
+      2. 반환 데이터 타입은 대체로 JSON타입
+========== 스프링 웹 개발 기초 End ==========
+
+========== 회원 관리 예제 - 백엔드 개발 Start ==========
+
+========== 회원 관리 예제 - 백엔드 개발 End ==========
