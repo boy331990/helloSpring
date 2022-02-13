@@ -127,4 +127,26 @@ study spring from inflearn
             </pre>
    3. 테스트는 각각 독립적으로 실행되어야 한다. 테스트 순서에 의존관계가 있는 것은 좋은 테스트가 아니다.
 
+4. 회원 서비스 개발
+   1. service 패키지, MemberService 생성
+   2. MemberRepository 선언
+   3. 회원가입, 전체회원 조회 서비스 추
+
+5. 회원 서비스 테스트
+   1. 기존에는 회원 서비스가 메모리 회원 리포지토리를 직접 생성하게 했다.
+      1. MemoryMemberRepository memberRepository = new MemoryMemberRepository();
+      2. 이럴 경우 생성된 메모리 회원 리포지토리가 MemberService의 메모리 회원 리포지토리와 다르다.
+         1. 회원 리포지토리의 코드가 회원 서비스 코드를 DI 가능하게 변경한다.
+         <pre>
+         public class MemberService {
+            private final MemberRepository memberRepository;
+            
+            //생성자 자동생성 단축키: command + n
+            public MemberService(MemberRepository memberRepository) {
+               this.memberRepository = memberRepository;
+            }
+         }
+         </pre>
+         2. MemberServiceTest 클래스에서 @BeforeEach 어노테이션 추가
+            1. 각 테스트 실행 전에 호출된다. 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어준다.
 ========== 회원 관리 예제 - 백엔드 개발 End ==========
