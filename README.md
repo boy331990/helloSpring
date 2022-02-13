@@ -150,3 +150,50 @@ study spring from inflearn
          2. MemberServiceTest 클래스에서 @BeforeEach 어노테이션 추가
             1. 각 테스트 실행 전에 호출된다. 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어준다.
 ========== 회원 관리 예제 - 백엔드 개발 End ==========
+
+========== 스프링 빈과 의존관계 Start ==========
+1. 컴포넌트 스캔과 자동 의존관계 설정
+   1. 컨트롤러에 @Controller를 선언
+   2. 생성자에 @Autowired 선언
+      1. @Autowired가 있으면 스프링이 연관된 객체를 컨테이너에서 찾아서 넣어준다. 이렇게 객체 의존관계를 외부에서 넣어주는 것을 DI(Dependency Injection), 의존성 주입이라 한다.
+   3. 컴포넌트 스캔 원리
+      1. @Component 애노테이션이 있으면 스프링 빈으로 자동 등록된다.
+      2. @Controller 컨트롤러가 스프링 빈으로 자동 등록된 이유도 컴포넌트 스캔 때문이다.
+      3. @Component를 포함하는 다음 애노테이션도 스프링 빈으로 자동 등록된다.
+         1. @Controller
+         2. @Service
+         3. @Repository
+      4. 생성자에 @Autowired를 사용하면 객체 생성 시점에 스프링 컨테이너에서 해당 스프링 빈을 찾아서 주입한다. 생성자가 1개만 있으면 @Autowired는 생략할 수 있다.
+      5. 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤으로 등록한다(유일하게 하나만 등록해서 공유한다) 따라서 같은 스프링 빈이면 모두 같은 인스턴스다. 설정으로 싱글톤이 아니게 설정할 수 있지만, 특별한 경우를 제외하면 대부분 싱글톤을 사용한다.
+
+2. 자바 코드로 직접 스프링 빈 등록하기
+   1. 기존 @Service, @Repository, @Autowired 애노테이션을 제거하고 진행
+   2. SpringConfig class 파일 생성
+      1. @Configuration 애노테이션 추가
+      2. MemberService, MemberRepository 메소드 생성 후 @Bean 애노테이션 추가
+   3. DI에는 필드 주입, setter 주입, 생성자 주입 이렇게 3가지 방법이 있다. 의존관계가 실행중에 동적으로 변하는 경우는 거의 없으므로 생성자 주입을 권장한다.
+      1. 필드 주입
+         <pre>
+         @Autowired
+         private MemberRepository memberRepository;
+         </pre>
+      2. setter 주입
+         <pre>
+         private MemberRepository memberRepository;
+         
+         @Autowired
+         public void setMemberRepository(MemberRepository memberRepository) {
+            this.memberRepository = memberRepository;
+         }
+         </pre>
+      3. 생성자 주입
+         <pre>
+         private final MemberRepository memberRepository;
+         
+         @Autowired
+         public MemberService(MemberRepository memberRepository) {
+            this.memberRepository = memberRepository;
+         }
+         </pre>
+
+========== 스프링 빈과 의존관계 End ==========
