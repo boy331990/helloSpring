@@ -149,6 +149,7 @@ study spring from inflearn
          </pre>
          2. MemberServiceTest 클래스에서 @BeforeEach 어노테이션 추가
             1. 각 테스트 실행 전에 호출된다. 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어준다.
+
 ========== 회원 관리 예제 - 백엔드 개발 End ==========
 
 ========== 스프링 빈과 의존관계 Start ==========
@@ -197,3 +198,44 @@ study spring from inflearn
          </pre>
 
 ========== 스프링 빈과 의존관계 End ==========
+
+========== 회원 관리 예제 - 웹 MVC 개발 Start ==========
+1. 회원 웹 기능 - 홈 화면 추가
+   1. Home 컨트롤러 추가
+   2. home.html 추가
+
+2. 회원 웹 기능 - 등록
+   1. 웹 등록 화면에서 데이터를 전달 받을 폼 객체
+      1. MemberForm class 생성
+      2. private String name, getter, setter 생성
+   2. 회원 컨트롤러에서 회원을 실제 등록하는 기능
+      1. PostMapping(value = "/members/new")으로 받고, create 메소드 생성
+         <pre>
+         @PostMapping(value = "/members/new")
+         public String create(MemberForm form) {
+            Member member = new Member();
+            member.setName(form.getName());
+            memberService.join(member);
+            
+            return "redirect:/";
+         }
+         </pre>
+   
+3. 회원 웹 기능 - 조회
+   1. 회원 컨트롤러에서 조회 기능
+      1. @GetMapping(value = "/members")으로 받고, list 메소드 생성
+      <pre>
+      @GetMapping(value = "/members")
+      public String list(Model model) {
+         List<Member> members = memberService.findMembers();
+         model.addAttribute("members", members); 
+         return "members/memberList";
+      }
+      </pre>
+   2. 회원 리스트 HTML 추가
+   
+========== 회원 관리 예제 - 웹 MVC 개발 End ==========
+
+========== 스프링 DB 접근 기술 Start ==========
+
+========== 스프링 DB 접근 기술 End ==========
