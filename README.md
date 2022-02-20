@@ -278,8 +278,15 @@ study spring from inflearn
             1. return new MemoryMemberRepository() -> return new JdbcMemberRepository(dataSource);
                1. DataSource는 데이터베이스 커넥션을 획득할 때 사용하는 객체다. 스프링 부트는 데이터베이스 커넥션 정보를 바탕으로 Data Source를 생성하고 스프링 빈으로 만들어둔다. 그래서 DI를 받을 수 있다.
 
+3. 스프링 통합 테스트
+   1. @SpringBootTest: 스프링 컨테이너와 테스트를 함께 실행한다.
+   2. @Transactional: 테스트 케이스에 이 애노테이션이 있으면, 테스트 시작전에 트랜잭션을 시작하고, 테스트 완료 후에 항상 롤백한다. 이렇게 하면 DB에 데이터가 남지 않으므로 다음 테스트에 영향을 주지 않는다.
 
-
+4. 스프링 JdbcTemplate
+   1. 순수 Jdbc와 동일한 환경설정을 하면된다.
+      1. implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+   2. 스프링 JdbcTemplate과 MyBatis 같은 라이브러리는 JDBC API에서 본 반복 코드를 대부분 제거해준다. 하지만 SQL은 직접 작성해야 한다.
+   
 
 
 ========== 스프링 DB 접근 기술 End ==========
