@@ -261,4 +261,25 @@ study spring from inflearn
       1. H2 데이터베이스에 접근해서 member 테이블 생성
    * 웹 브라우저가 자동 실행되면 주소창에 임의의 숫자가 표기될때는 localhost로 변경한다.
 
+2. 순수 JDBC
+   1. build.gradle 파일에 jdbc, h2 데이터베이스 관련 라이브러리 추가
+      1. implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+         runtimeOnly 'com.h2database:h2'
+   2. 스프링 부트 데이터베이스 연결 설정 추가
+      1. resources/application.properties
+         1. spring.datasource.url=jdbc:h2:tcp://localhost/~/test
+            spring.datasource.driver-class-name=org.h2.Driver
+            spring.datasource.username=sa
+         * 주의!: 스프링부트 2.4부터는 spring.datasource.username=sa 를 꼭 추가해주어야 한다. 그렇지 않으면 Wrong user name or password 오류가 발생한다. 참고로 다음과 같이 마지막에 공백이 들어가면 같은 오류가 발생한다. spring.datasource.username=sa 공백 주의, 공백은 모두 제거해야 한다.
+   3. JDBC 리포지토리 구현
+      1. JDBC API로 직접 코딩하는 것은 20년 전 이야기이다. 그냥 넘어가자.
+      2. 스프링 설정 변경
+         1. SpringConfig파일 내 memberRepository의 return값을 변경
+            1. return new MemoryMemberRepository() -> return new JdbcMemberRepository(dataSource);
+               1. DataSource는 데이터베이스 커넥션을 획득할 때 사용하는 객체다. 스프링 부트는 데이터베이스 커넥션 정보를 바탕으로 Data Source를 생성하고 스프링 빈으로 만들어둔다. 그래서 DI를 받을 수 있다.
+
+
+
+
+
 ========== 스프링 DB 접근 기술 End ==========
