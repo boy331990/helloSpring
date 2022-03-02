@@ -96,9 +96,9 @@ study spring from inflearn
       2. Getter, Setter 구현
    2. 회원 리포지토리 인터페이스
       1. Member save(Member member);
-      2. Optional<Member> findById(Long id);
-      3. Optional<Member> findByName(String name);
-      4. List<Member> findAll();
+      2. Optional\<Member\> findById(Long id);
+      3. Optional\<Member\> findByName(String name);
+      4. List\<Member\> findAll();
       * Optional 객체의 경우 null값이어도 예외가 발생하지 않고 빈 Optional 객체를 반환하게 할 수 있다.(JAVA 8버전부터 Optional이 추가 됨)
    3. 회원 리포지토리 메모리 구현체
 
@@ -322,7 +322,7 @@ study spring from inflearn
    1. 스프링 데이터 JPA를 사용하면, 기존의 한계를 넘어 마치 마법처럼, 리포지토리에 구현 클래스 없이 인터페이스 만으로 개발을 완료할 수 있습니다. 그리고 반복 개발해온 기본 CRUD 기능도 스프링 데이터 JPA가 모두 제공합니다.
    2. 스프링 데이터 JPA 회원 리포지토리
       <pre>
-      public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
+      public interface SpringDataJpaMemberRepository extends JpaRepository\<Member, Long\>, MemberRepository {
          Optional<Member> findByName(String name);
       }
       </pre>
@@ -350,17 +350,17 @@ study spring from inflearn
             5. delete(T)
             ...
          3. Interface(PagingAndSortingRepository)
-            1. findAll(Sort) : Iterable<T>
-            2. findAll(Pageable) : Page<T>
+            1. findAll(Sort) : Iterable\<T\>
+            2. findAll(Pageable) : Page\<T\>
       2. 스프링 데이터 JPA
          1. Interface(JpaRepository)
-            1. findAll() : List<T>
-            2. findAll(Sort) : List<T>
-            3. findAll(Iterable<ID>) : LIST<T>
-            4. save(Iterable<ID>) : List<S>
+            1. findAll() : List\<T\>
+            2. findAll(Sort) : List\<T\>
+            3. findAll(Iterable<ID>) : LIST\<T\>
+            4. save(Iterable<ID>) : List\<S\>
             5. flush()
             6. saveAndFlush(T) : T
-            7. deleteInBatch(Iterable<T>)
+            7. deleteInBatch(Iterable\<T\>)
             8. deleteAllInBatch()
             9. getOne(ID) : T
       3. 스프링 데이터 JPA 제공 기능
